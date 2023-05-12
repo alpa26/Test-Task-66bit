@@ -1,0 +1,46 @@
+
+
+.button1 {
+    margin-top: 6px;
+    margin-right: 4px;
+}
+
+.form-container {
+    max-width: 320px;
+}
+
+.form-container .cancel {
+        background-color: #448AFF;
+}
+
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
+.addFootballer {
+    border-radius: 5px;
+    width: 30%;
+    height: 2.6rem;
+    font-size: initial;
+}
+
+.addFootballerEl {
+    border-radius: 10px;
+    height: 3rem;
+    font-size: initial;
+}
+
+.addCommand {
+    border-radius: 1rem;
+    height: 20rem;
+    width: 30rem;
+    display: none;
+    margin-left: 6px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: xx-large;
+    padding-left: 27px;
+    padding-top: 8px;
+}

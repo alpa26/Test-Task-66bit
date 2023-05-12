@@ -1,0 +1,121 @@
+﻿@page
+@model Тестовое.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div style="display: flex;">
+    <div class=" border box-shadow shadow" style="border-radius: 1rem; width: 50rem;">
+        <div class="d-flex " style="font-weight: bold;font-size: xx-large; padding-left: 27px;
+        padding-top: 8px;">
+            Добавить футболиста
+        </div>
+        <div class="container" style="padding:20px">
+            <form method="post" asp-page-handler="Footballer">
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Имя:</label> <br />
+                        <input type="text" asp-for="FootballerAddModel.Name" class="form-control addFootballerEl" placeholder="Имя"  />
+                    </div>
+                    <span class="text-danger" asp-validation-for="FootballerAddModel.Name"></span>
+                </div>
+                <p></p>
+                <div class="form-group row mb-1">
+                    <div class="col">
+                        <label>Фамилия:</label> <br />
+                        <input type="text" asp-for="FootballerAddModel.Surname" class="form-control addFootballerEl" placeholder="Фамилия"/>
+                    </div>
+                    <span class="text-danger" asp-validation-for="FootballerAddModel.Surname"></span>
+                </div>
+                <p>
+                </p>
+                <div class="form-group row mb-1">
+
+                    <div class="col">
+                        <label asp-for="FootballerAddModel.Sex" >Пол:</label> <br />
+                        <input type="radio" asp-for="FootballerAddModel.Sex" value="Male">M
+                        <input type="radio" asp-for="FootballerAddModel.Sex" value="Female">Ж
+                    </div>
+                    <span class="text-danger" asp-validation-for="FootballerAddModel.Sex"></span>
+                </div>
+                <p></p>
+                <div class="form-group row mb-1">
+                    <div class="col">
+                        <label>Дата рождения:</label> <br />
+                        <input type="text" asp-for="FootballerAddModel.DateOfBirthday" class="form-control addFootballerEl" placeholder="DD.MM.YYYY" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="FootballerAddModel.DateOfBirthday"></span>
+                </div>
+                <p>
+                </p>
+                <div class="form-group row mb-1">
+                    <div class="col">
+                        <label asp-for="FootballerAddModel.FootBallTeam">Выберите команду:</label>
+                        
+                        @if (Model.listTeam is null || Model.listTeam.Count==0)
+                        {
+                            
+                        }
+                        else
+                        {
+                            <select asp-for="FootballerAddModel.FootBallTeam" class="form-control">
+                                @foreach (var item in Model.listTeam)
+                                {
+                                    <option value="@item.Name">@item.Name</option>
+                                }
+                            </select>
+                        }
+                        
+                        <input id="addButt" onclick="openForm()" class="btn btn-primary button1" value="Добавить" />
+                        <span class="text-danger" asp-validation-for="FootballerAddModel.FootBallTeam"></span>
+                    </div>
+
+                </div>
+                <p></p>
+                <div class="form-group row mb-1">
+                    <div class="col">
+                        <label asp-for="FootballerAddModel.Country" >Выберите страну:</label>
+                        <select value="" asp-for="FootballerAddModel.Country" class="form-control">
+                            <option value="Russia">Russia</option>
+                            <option value="USA">USA</option>
+                            <option value="Italy">Italy</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mt-3 row">
+                    <div class="col" style="display: flex;
+                                          flex-direction: column;
+                                          ">
+                        <input type="submit" class="btn btn-primary btn-block addFootballer" value="Добавить" />
+                    </div>
+                </div>
+            </form>
+        
+        </div>
+
+    </div>
+    <div id="myForm" class=" border box-shadow shadow addCommand" >
+        <div class="d-flex title">
+            Добавить команду
+        </div>
+        <div class="container" style="padding:20px">
+            <form method="post" asp-page-handler="FootBallTeam" class="form-container">
+                <input type="text" asp-for="FootBallTeamModel.TeamName" class="form-control addFootballerEl" placeholder="Название команды" >
+                <div  style=" display:flex">
+                    <button type="submit" onclick='setTimeout(" location.reload(true);", timeout);' class="btn btn-primary button1">Отправить</button>
+                    <button type="button" class="btn btn-primary  button1" onclick="closeForm()">Закрыть</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>

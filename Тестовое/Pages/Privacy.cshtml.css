@@ -1,0 +1,63 @@
+.body {
+    background: #f5f5f5;
+}
+
+.title {
+    margin: 50px 0 30px;
+    font-family: "font900","Arial";
+    font-size: 1.7em;
+}
+
+
+
+.main-container {
+    opacity: 1;
+    transition: .4s ease;
+    padding: 0 8px;
+}
+
+.title-container {
+    padding: 0 8px;
+}
+
+.trainer-list-footballer {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 20px 26px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0 rgb(33 33 33 / 10%);
+    transition: box-shadow .2s ease-in-out;
+    text-decoration: none;
+    color: #333;
+}
+
+.info1 {
+    font-size: 1.2em;
+    font-family: "font900","Arial";
+    font-weight: bold;
+}
+
+.info2 {
+    font-size: 1.2em;
+    font-family: "font700","Arial";
+}
+
+
+
+.footballers {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+.edit2 {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 6px;
+    column-gap: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}

@@ -1,0 +1,101 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<script>
+    function openForm() {
+        document.getElementById("edit").style.display = "block";
+
+    }
+
+    function closeForm() {
+        document.getElementById("edit").style.display = "none";
+    }
+</script>
+<div>
+    <div id="a" class="main-container">
+        <div class="title-container">
+            <div style="font-weight: bold;" class="title">Все футболисты</div>
+        </div>
+        <div class="tasks">
+            <div>
+                <div class="footballers" style="height: auto; overflow: auto;">
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    @if (Model.Footballers.Count==0)
+                    {
+                        <div class="info2">Упс, никого нет</div>
+                    }
+                    @foreach (var item in Model.Footballers)
+                    {
+                        <a class="trainer-list-footballer border">
+                            <div id="info+@item.Id" style=" width:50%">
+                                <div class="info1">@item.Name @item.Surname</div>
+                                <div height="12px"></div>
+                                <div class="info2">Пол: @item.Sex &ensp; Дата рождения: @item.DateOfBirthday</div>
+                                <div class="info2">Страна: @item.Country</div>
+                                <div class="info2">Команда: @item.FootBallTeam</div>
+                                <input id="editButt" onclick='document.getElementById("edit+@item.Id").style.display = "block";
+                                                      document.getElementById("info+@item.Id").style.display = "none";'
+                                       class="btn btn-primary btn-block " value="Редактировать" />
+                            </div>
+                            <div id="edit+@item.Id" style="display: none; width:50%">
+                                <form method="post" asp-page-handler="Footballer">
+                                    <div class="edit2">
+                                        <input type="text" asp-for="FootballerLayout.Id" style="display: none" class="form-control" value="@item.Id" />
+                                        <!-- Костыль( -->
+                                        <span class=" eKAIZh">Имя:</span>
+                                        <input type="text" asp-for="FootballerLayout.Name" class="form-control " value="@item.Name" />
+                                        <span class=" eKAIZh">Фамилия:</span>
+                                        <input type="text" asp-for="FootballerLayout.Surname" class="form-control " value="@item.Surname" />
+                                        <span class=" eKAIZh">Страна:</span>
+                                        <select asp-for="FootballerLayout.Country" class="form-control " value="@item.Country">
+                                            <option value="@item.Country" selected  hidden>
+                                                @item.Country
+                                            </option>
+                                            <option value="Russia">Russia</option>
+                                            <option value="USA">USA</option>
+                                            <option value="Italy">Italy</option>
+                                        </select>
+                                        <span class=" eKAIZh">Пол:</span>
+                                        @if (item.Sex.Equals("Male"))
+                                        {
+                                            <div class="el1">
+                                                <input type="radio" asp-for="FootballerLayout.Sex" checked value="Male">M
+                                                <input type="radio" asp-for="FootballerLayout.Sex" value="Female">Ж
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="el1">
+                                                <input type="radio" asp-for="FootballerLayout.Sex" value="Male">M
+                                                <input type="radio" asp-for="FootballerLayout.Sex" checked value="Female">Ж
+                                            </div>
+                                        }
+                                        <span class=" eKAIZh">Дата Рождения:</span>
+                                        <input type="text" asp-for="FootballerLayout.DateOfBirthday" class="form-control el1" value="@item.DateOfBirthday" />
+                                        <span class=" eKAIZh">Команда:</span>
+                                        <select asp-for="FootballerLayout.FootBallTeam" class="form-control el1" value="@item.FootBallTeam">
+                                            <option value="@item.FootBallTeam" selected  hidden>
+                                                @item.FootBallTeam
+                                            </option>
+                                            @foreach (var item1 in Model.listTeam)
+                                            {
+                                                <option value="@item1.Name">@item1.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <input id="confirm" onclick='document.getElementById(" @item.Id").style.display="none" ;' type="submit" class="btn btn-primary btn-block el1" value="Изменить" />
+                                    <input type="button" class="btn btn-primary btn-block  cancel el1" onclick='
+                                        document.getElementById("edit+@item.Id").style.display="none" ;
+                                        document.getElementById("info+@item.Id").style.display="block" ; '
+                                     value="Закрыть">
+                                </form>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
